@@ -16,12 +16,12 @@ export function Home() {
 
   const navigation = useNavigation();
 
-  function handkeOpenGame({ id, title, bannerUrl }: GameCardProps) {
+  function handleOpenGame({ id, title, bannerUrl }: GameCardProps) {
     navigation.navigate("game", { id, title, bannerUrl });
   }
 
   useEffect(() => {
-    fetch("http://192.168.0.108:3333/games")
+    fetch("http://192.168.0.106:3000/games")
       .then((response) => response.json())
       .then((data) => setGames(data));
   }, []);
@@ -32,7 +32,7 @@ export function Home() {
         <Image source={logoImg} style={styles.logo} />
 
         <Heading
-          title="Econtre seu duo"
+          title="Encontre seu duo"
           subtitle="Selecione o game que deseja jogar..."
         />
 
@@ -40,7 +40,7 @@ export function Home() {
           data={games}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <GameCard data={item} onPress={() => handkeOpenGame(item)} />
+            <GameCard data={item} onPress={() => handleOpenGame(item)} />
           )}
           showsHorizontalScrollIndicator={false}
           horizontal
